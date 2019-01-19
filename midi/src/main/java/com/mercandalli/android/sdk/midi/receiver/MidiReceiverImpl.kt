@@ -3,7 +3,6 @@ package com.mercandalli.android.sdk.midi.receiver
 import android.media.midi.MidiManager
 import android.media.midi.MidiOutputPort
 import android.os.Handler
-import android.widget.Toast
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 import com.mercandalli.android.sdk.midi.toast.ToastManager
 import kotlinx.coroutines.Dispatchers

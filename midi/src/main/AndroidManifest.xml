@@ -1,6 +1,12 @@
-<manifest package="com.mercandalli.android.apps.midi">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mercandalli.android.apps.midi">
 
     <application>
+
+        <activity
+            android:name="com.mercandalli.android.sdk.midi.midi_view.MidiActivity"
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
 
     </application>
 

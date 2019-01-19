@@ -1,10 +1,10 @@
 package com.mercandalli.android.sdk.midi.main
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import com.mercandalli.android.sdk.midi.log.LogModule
+import com.mercandalli.android.sdk.midi.midi_view.MidiActivity
 import com.mercandalli.android.sdk.midi.toast.ToastModule
 
 class MidiGraph(
@@ -22,22 +22,22 @@ class MidiGraph(
     companion object {
 
         @SuppressLint("StaticFieldLeak")
-        private lateinit var graph: MidiGraph
+        private var graph: MidiGraph? = null
 
         @JvmStatic
-        fun getLogManager() = graph.logManagerInternal
+        fun getLogManager() = graph?.logManagerInternal!!
 
         @JvmStatic
-        fun getMidiDeviceManager() = graph.midiDeviceInfoManagerInternal
+        fun getMidiDeviceManager() = graph?.midiDeviceInfoManagerInternal!!
 
         @JvmStatic
-        fun getMidiReceiver() = graph.midiReceiverInternal
+        fun getMidiReceiver() = graph?.midiReceiverInternal!!
 
         @JvmStatic
-        fun getMidiSender() = graph.midiSenderInternal
+        fun getMidiSender() = graph?.midiSenderInternal!!
 
         @JvmStatic
-        fun getToastManager() = graph.toastManagerInternal
+        fun getToastManager() = graph?.toastManagerInternal!!
 
         @JvmStatic
         fun isMidiSupported(context: Context) = context.packageManager.hasSystemFeature(
@@ -46,10 +46,18 @@ class MidiGraph(
 
         @JvmStatic
         fun initialize(
-            application: Application
+            context: Context
         ) {
-            graph = MidiGraph(application)
+            if (graph != null) {
+                return
+            }
+            graph = MidiGraph(context.applicationContext)
         }
 
+        @JvmStatic
+        fun startMidiActivity() {
+            val context = graph?.context
+            MidiActivity.start(context!!)
+        }
     }
 }
