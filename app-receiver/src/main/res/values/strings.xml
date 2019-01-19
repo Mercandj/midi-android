@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">midi</string>
+    <string name="app_name">midi receiver</string>
+
+    <string-array name="senders">
+        <item>"none"</item>
+    </string-array>
 </resources>

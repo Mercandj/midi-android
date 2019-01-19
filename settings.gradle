@@ -1,2 +1,3 @@
 include ':app-receiver',
-        ':midi-receiver'
+        ':app-sender',
+        ':midi'
