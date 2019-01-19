@@ -12,14 +12,12 @@ interface MidiViewContract {
         fun onAttached()
 
         fun onDetached()
-
-        fun onSendClicked()
-
-        fun onListenClicked()
     }
 
     interface Screen {
 
         fun display(midiDeviceInfos: List<MidiDeviceInfo>)
+
+        fun displayLog(text: String)
     }
 }

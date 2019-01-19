@@ -22,8 +22,8 @@ class MidiModule(
     private val handler = Handler(mainLooper)
 
     init {
-        if (!context.packageManager.hasSystemFeature(PackageManager.FEATURE_MIDI)) {
-            throw IllegalStateException("Feature not supported on this device")
+        if (!MidiGraph.isMidiSupported(context)) {
+            throw Exception("Feature not supported on this device")
         }
     }
 

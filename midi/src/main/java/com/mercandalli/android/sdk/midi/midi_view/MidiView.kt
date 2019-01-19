@@ -8,6 +8,8 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.mercandalli.android.apps.midi.R
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 import com.mercandalli.android.sdk.midi.main.MidiGraph
@@ -20,18 +22,14 @@ class MidiView @JvmOverloads constructor(
     MidiViewContract.Screen {
 
     private val view = View.inflate(context, R.layout.view_midi, this)
-    private val list: TextView = view.findViewById(R.id.view_midi_list)
-    private val send: View = view.findViewById(R.id.view_midi_send)
-    private val listen: View = view.findViewById(R.id.view_midi_listen)
+    private val log: TextView = view.findViewById(R.id.view_midi_log)
+    private val recyclerView: RecyclerView = view.findViewById(R.id.view_midi_recycler_view)
+    private val adapter = MidiViewAdapter()
     private val userAction = createUserAction()
 
     init {
-        send.setOnClickListener {
-            userAction.onSendClicked()
-        }
-        listen.setOnClickListener {
-            userAction.onListenClicked()
-        }
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        recyclerView.adapter = adapter
     }
 
     override fun onAttachedToWindow() {
@@ -45,7 +43,11 @@ class MidiView @JvmOverloads constructor(
     }
 
     override fun display(midiDeviceInfos: List<MidiDeviceInfo>) {
-        list.text = midiDeviceInfos.joinToString("\n\n")
+        adapter.populate(midiDeviceInfos)
+    }
+
+    override fun displayLog(text: String) {
+        log.text = text
     }
 
     private fun createUserAction(): MidiViewContract.UserAction {
@@ -53,20 +55,14 @@ class MidiView @JvmOverloads constructor(
             return object : MidiViewContract.UserAction {
                 override fun onAttached() {}
                 override fun onDetached() {}
-                override fun onSendClicked() {}
-                override fun onListenClicked() {}
             }
         }
         val midiDeviceManager = MidiGraph.getMidiDeviceManager()
-        val midiReceiver = MidiGraph.getMidiReceiver()
-        val midiSender = MidiGraph.getMidiSender()
-        val toastManager = MidiGraph.getToastManager()
+        val logManager = MidiGraph.getLogManager()
         return MidiViewPresenter(
             this,
             midiDeviceManager,
-            midiReceiver,
-            midiSender,
-            toastManager
+            logManager
         )
     }
 }

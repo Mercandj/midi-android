@@ -17,12 +17,16 @@ class MidiReceiverImpl(
         midiManager.openDevice(
             midiDeviceInfo.androidMidiInfo,
             {
+                if(it==null){
+                    toastManager.toast("Listen fail because midi device is null")
+                    return@openDevice
+                }
                 val outputPort = it.openOutputPort(0)
                 if (outputPort == null) {
-                    toastManager.toast("Device open but port closed")
+                    toastManager.toast("Listen: Device open but port closed")
                     return@openDevice
                 } else {
-                    toastManager.toast("Device open and port open")
+                    toastManager.toast("Listen: Device open and port open")
                 }
                 outputPort.connect(AndroidMidiReceiver())
             },
@@ -32,7 +36,12 @@ class MidiReceiverImpl(
 
     inner class AndroidMidiReceiver : android.media.midi.MidiReceiver() {
         override fun onSend(msg: ByteArray?, offset: Int, count: Int, timestamp: Long) {
-            toastManager.toast("Data received")
+            msg?.let {
+                val zero = it[0].toInt()
+                val one = it[1].toInt()
+                val two = it[2].toInt()
+                toastManager.toast("Data received $zero $one $two")
+            }
         }
     }
 

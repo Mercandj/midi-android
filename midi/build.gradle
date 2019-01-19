@@ -21,6 +21,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            // Split resources.
+            // https://medium.com/google-developer-experts/android-project-structure-alternative-way-29ce766682f0#.sjnhetuhb
+            res.srcDirs = [
+                    'src/main/res/main',
+                    'src/main/res/midi_view',
+                    'src/main/res/midi_view_row'
+            ]
+        }
+    }
 }
 
 dependencies {
@@ -30,7 +42,17 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
 
+    // Android - Support
+    implementation "androidx.annotation:annotation:1.0.1"
+    implementation "androidx.appcompat:appcompat:1.0.2"
+    implementation "com.google.android.material:material:1.0.0"
+    implementation "androidx.cardview:cardview:1.0.0"
+    implementation "androidx.recyclerview:recyclerview:1.0.0"
+
+    // Third party - UI
+    implementation 'com.hannesdorfmann:adapterdelegates4:4.0.0'
 }
+
 repositories {
     mavenCentral()
 }
