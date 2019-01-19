@@ -23,7 +23,6 @@ class MidiRowView @JvmOverloads constructor(
     private val name: TextView = view.findViewById(R.id.view_midi_row_name)
     private val description: TextView = view.findViewById(R.id.view_midi_row_description)
     private val sendOneTime: View = view.findViewById(R.id.view_midi_row_send_one_time)
-    private val open: View = view.findViewById(R.id.view_midi_row_open)
     private val send: View = view.findViewById(R.id.view_midi_row_send)
     private val close: View = view.findViewById(R.id.view_midi_row_close)
     private val listen: View = view.findViewById(R.id.view_midi_row_listen)
@@ -32,9 +31,6 @@ class MidiRowView @JvmOverloads constructor(
     init {
         sendOneTime.setOnClickListener {
             userAction.onSendOneTimeClicked()
-        }
-        open.setOnClickListener {
-            userAction.onOpenClicked()
         }
         send.setOnClickListener {
             userAction.onSendClicked()
@@ -68,7 +64,6 @@ class MidiRowView @JvmOverloads constructor(
             return object : MidiRowViewContract.UserAction {
                 override fun setMidiDeviceInfo(midiDeviceInfo: MidiDeviceInfo) {}
                 override fun onSendOneTimeClicked() {}
-                override fun onOpenClicked() {}
                 override fun onSendClicked() {}
                 override fun onCloseClicked() {}
                 override fun onListenClicked() {}

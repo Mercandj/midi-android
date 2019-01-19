@@ -10,15 +10,7 @@ interface MidiSender {
         @IntRange(from = 21, to = 108) midiCode: Int = 60,
         @IntRange(from = 0, to = 127) velocity: Int = 127,
         oneTime: Boolean = true
-    ): Sender?
+    )
 
-    interface Sender {
-
-        fun send(
-            @IntRange(from = 21, to = 108) midiCode: Int = 60,
-            @IntRange(from = 0, to = 127) velocity: Int = 127
-        )
-
-        fun close()
-    }
+    fun close()
 }

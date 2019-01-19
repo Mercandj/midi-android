@@ -15,8 +15,6 @@ interface MidiRowViewContract {
 
         fun onListenClicked()
 
-        fun onOpenClicked()
-
         fun onSendClicked()
 
         fun onCloseClicked()

@@ -17,7 +17,6 @@ class MidiRowViewPresenter(
     private val midiSender: MidiSender
 ) : MidiRowViewContract.UserAction {
 
-    private var send: MidiSender.Sender? = null
     private var midiDeviceInfo: MidiDeviceInfo? = null
 
     override fun setMidiDeviceInfo(midiDeviceInfo: MidiDeviceInfo) {
@@ -32,21 +31,12 @@ class MidiRowViewPresenter(
         midiSender.send(midiDeviceInfo!!)
     }
 
-    override fun onOpenClicked() {
-        send = midiSender.send(
-            midiDeviceInfo!!,
-            60,
-            127,
-            false
-        )
-    }
-
     override fun onSendClicked() {
-        send?.send()
+        midiSender.send(midiDeviceInfo!!)
     }
 
     override fun onCloseClicked() {
-        send?.close()
+        midiSender.close()
     }
 
     override fun onListenClicked() {

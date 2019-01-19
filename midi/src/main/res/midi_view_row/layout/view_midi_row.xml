@@ -53,19 +53,6 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/view_midi_row_open"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="?selectableItemBackground"
-                    android:paddingStart="8dp"
-                    android:paddingTop="3dp"
-                    android:paddingEnd="8dp"
-                    android:paddingBottom="3dp"
-                    android:text="OPEN"
-                    android:textSize="13sp"
-                    android:textStyle="bold" />
-
-                <TextView
                     android:id="@+id/view_midi_row_send"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
