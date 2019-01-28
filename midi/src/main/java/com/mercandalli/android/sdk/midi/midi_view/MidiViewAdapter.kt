@@ -3,11 +3,11 @@
 /* ktlint-disable package-name */
 package com.mercandalli.android.sdk.midi.midi_view
 
+import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.hannesdorfmann.adapterdelegates4.AbsListItemAdapterDelegate
-import com.hannesdorfmann.adapterdelegates4.AdapterDelegate
-import com.hannesdorfmann.adapterdelegates4.ListDelegationAdapter
+import com.hannesdorfmann.adapterdelegates3.AbsListItemAdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.AdapterDelegate
+import com.hannesdorfmann.adapterdelegates3.ListDelegationAdapter
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 import com.mercandalli.android.sdk.midi.midi_view_row.MidiRowView
 

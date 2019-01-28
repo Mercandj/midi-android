@@ -1,6 +1,6 @@
 package com.mercandalli.android.sdk.midi.receiver
 
-import androidx.annotation.IntRange
+import android.support.annotation.IntRange
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 
 interface MidiReceiver {

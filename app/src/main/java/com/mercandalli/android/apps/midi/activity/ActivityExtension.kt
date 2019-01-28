@@ -1,8 +1,8 @@
 package com.mercandalli.android.apps.midi.activity
 
 import android.app.Activity
+import android.support.annotation.IdRes
 import android.view.View
-import androidx.annotation.IdRes
 
 object ActivityExtension {
 

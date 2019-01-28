@@ -28,8 +28,8 @@ ext {
     appVersionCode = 1_00_00
     appVersionName = "1.00.00"
 
-    compileSdkVersion = 28
+    compileSdkVersion = 27
     buildToolsVersion = "28.0.3"
-    targetSdkVersion = 28
+    targetSdkVersion = 27
     minSdkVersion = 23
 }

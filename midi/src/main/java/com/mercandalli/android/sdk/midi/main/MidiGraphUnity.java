@@ -1,7 +1,8 @@
 package com.mercandalli.android.sdk.midi.main;
 
 import android.content.Context;
-import androidx.annotation.Keep;
+import android.support.annotation.Keep;
+import com.mercandalli.android.sdk.midi.receiver.MidiReceiver;
 
 @Keep
 public class MidiGraphUnity {
@@ -10,12 +11,20 @@ public class MidiGraphUnity {
         MidiGraph.initialize((Context) context);
     }
 
-
     public static void initialize(Context context) {
         MidiGraph.initialize(context);
     }
 
     public static void startMidiActivity() {
         MidiGraph.startMidiActivity();
+    }
+
+    public static void registerMidiListener(final MidiListenerUnity listener) {
+        MidiGraph.registerMidiListener(new MidiReceiver.MidiListener() {
+            @Override
+            public void onReceived(int midiCode, int velocity) {
+                listener.onReceived(midiCode, velocity);
+            }
+        });
     }
 }

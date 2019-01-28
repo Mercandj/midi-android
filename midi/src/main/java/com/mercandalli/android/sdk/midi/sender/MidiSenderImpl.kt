@@ -3,9 +3,9 @@ package com.mercandalli.android.sdk.midi.sender
 import android.media.midi.MidiInputPort
 import android.media.midi.MidiManager
 import android.os.Handler
-import androidx.annotation.IntRange
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 import com.mercandalli.android.sdk.midi.toast.ToastManager
+import android.support.annotation.IntRange
 
 class MidiSenderImpl(
     private val midiManager: MidiManager,
