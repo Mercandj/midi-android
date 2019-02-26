@@ -27,12 +27,16 @@ class MidiRowViewPresenter(
         screen.setDescription(description)
     }
 
-    override fun onSendOneTimeClicked() {
-        midiSender.send(midiDeviceInfo!!)
+    override fun onConnectClicked() {
+        midiSender.connect(midiDeviceInfo!!)
     }
 
     override fun onSendClicked() {
-        midiSender.send(midiDeviceInfo!!)
+        midiSender.send()
+    }
+
+    override fun onInputClicked(index: Int) {
+        midiSender.send(21 + index)
     }
 
     override fun onCloseClicked() {
@@ -42,5 +46,4 @@ class MidiRowViewPresenter(
     override fun onListenClicked() {
         midiReceiver.listen(midiDeviceInfo!!)
     }
-
 }

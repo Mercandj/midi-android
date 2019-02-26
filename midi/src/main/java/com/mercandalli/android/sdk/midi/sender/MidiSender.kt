@@ -5,11 +5,13 @@ import android.support.annotation.IntRange
 
 interface MidiSender {
 
+    fun connect(
+        midiDeviceInfo: MidiDeviceInfo
+    )
+
     fun send(
-        midiDeviceInfo: MidiDeviceInfo,
         @IntRange(from = 21, to = 108) midiCode: Int = 21,
-        @IntRange(from = 0, to = 127) velocity: Int = 127,
-        oneTime: Boolean = true
+        @IntRange(from = 0, to = 127) velocity: Int = 127
     )
 
     fun close()

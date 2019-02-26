@@ -19,8 +19,8 @@
         android:id="@+id/view_midi_log"
         android:layout_width="match_parent"
         android:layout_height="140dp"
-        android:background="#F0F0F0"
         android:layout_gravity="bottom|start"
+        android:background="#F0F0F0"
         android:padding="20dp"
         android:textSize="10sp" />
 
