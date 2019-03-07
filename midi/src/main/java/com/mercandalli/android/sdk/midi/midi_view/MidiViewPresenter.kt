@@ -3,12 +3,8 @@
 /* ktlint-disable package-name */
 package com.mercandalli.android.sdk.midi.midi_view
 
-import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfoManager
 import com.mercandalli.android.sdk.midi.log.LogManager
-import com.mercandalli.android.sdk.midi.receiver.MidiReceiver
-import com.mercandalli.android.sdk.midi.sender.MidiSender
-import com.mercandalli.android.sdk.midi.toast.ToastManager
 import java.lang.StringBuilder
 
 class MidiViewPresenter(

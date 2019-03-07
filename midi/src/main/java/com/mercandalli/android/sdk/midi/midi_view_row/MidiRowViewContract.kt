@@ -11,13 +11,15 @@ interface MidiRowViewContract {
 
         fun setMidiDeviceInfo(midiDeviceInfo: MidiDeviceInfo)
 
-        fun onSendOneTimeClicked()
+        fun onConnectClicked()
 
         fun onListenClicked()
 
         fun onSendClicked()
 
         fun onCloseClicked()
+
+        fun onInputClicked(index: Int)
     }
 
     interface Screen {

@@ -3,9 +3,9 @@ package com.mercandalli.android.sdk.midi.sender
 import android.media.midi.MidiInputPort
 import android.media.midi.MidiManager
 import android.os.Handler
-import androidx.annotation.IntRange
 import com.mercandalli.android.sdk.midi.device_info.MidiDeviceInfo
 import com.mercandalli.android.sdk.midi.toast.ToastManager
+import android.support.annotation.IntRange
 
 class MidiSenderImpl(
     private val midiManager: MidiManager,
@@ -16,14 +16,10 @@ class MidiSenderImpl(
     private var inputPort: MidiInputPort? = null
     private var midiDeviceInfo: MidiDeviceInfo? = null
 
-    override fun send(
-        midiDeviceInfo: MidiDeviceInfo,
-        @IntRange(from = 21, to = 108) midiCode: Int,
-        @IntRange(from = 0, to = 127) velocity: Int,
-        oneTime: Boolean
-    ) {
+    override fun connect(midiDeviceInfo: MidiDeviceInfo) {
         if (this.midiDeviceInfo?.serialNumber != midiDeviceInfo.serialNumber) {
-            close()
+            toastManager.toast("Already connected in ram")
+            return
         }
         midiManager.openDevice(
             midiDeviceInfo.androidMidiInfo,
@@ -36,24 +32,12 @@ class MidiSenderImpl(
                 }
                 this.midiDeviceInfo = midiDeviceInfo
                 toastManager.toast("Send: Device open and port open")
-
-                send(midiCode, velocity)
-                if (oneTime) {
-                    close()
-                }
-
             },
             handler
         )
     }
 
-    override fun close() {
-        inputPort?.close()
-        inputPort = null
-        midiDeviceInfo = null
-    }
-
-    private fun send(
+    override fun send(
         @IntRange(from = 21, to = 108) midiCode: Int,
         @IntRange(from = 0, to = 127) velocity: Int
     ) {
@@ -66,5 +50,11 @@ class MidiSenderImpl(
         val offset = 0
         // post is non-blocking
         inputPort?.send(buffer, offset, numBytes)
+    }
+
+    override fun close() {
+        inputPort?.close()
+        inputPort = null
+        midiDeviceInfo = null
     }
 }

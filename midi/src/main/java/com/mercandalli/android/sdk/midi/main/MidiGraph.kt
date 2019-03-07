@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import com.mercandalli.android.sdk.midi.log.LogModule
 import com.mercandalli.android.sdk.midi.midi_view.MidiActivity
+import com.mercandalli.android.sdk.midi.receiver.MidiReceiver
 import com.mercandalli.android.sdk.midi.toast.ToastModule
 
 class MidiGraph(
@@ -58,6 +59,11 @@ class MidiGraph(
         fun startMidiActivity() {
             val context = graph?.context
             MidiActivity.start(context!!)
+        }
+
+        @JvmStatic
+        fun registerMidiListener(listener: MidiReceiver.MidiListener) {
+            getMidiReceiver().registerMidiListener(listener)
         }
     }
 }

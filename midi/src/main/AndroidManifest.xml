@@ -6,7 +6,7 @@
         <activity
             android:name="com.mercandalli.android.sdk.midi.midi_view.MidiActivity"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.AppCompat.Light.Dialog.Alert" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
     </application>
 
