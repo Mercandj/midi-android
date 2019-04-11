@@ -17,7 +17,8 @@ class MidiSenderImpl(
     private var midiDeviceInfo: MidiDeviceInfo? = null
 
     override fun connect(midiDeviceInfo: MidiDeviceInfo) {
-        if (this.midiDeviceInfo?.serialNumber != midiDeviceInfo.serialNumber) {
+        if (this.midiDeviceInfo != null &&
+            this.midiDeviceInfo?.serialNumber != midiDeviceInfo.serialNumber) {
             toastManager.toast("Already connected in ram")
             return
         }
@@ -26,6 +27,7 @@ class MidiSenderImpl(
             {
                 inputPort = it.openInputPort(0)
                 if (inputPort == null) {
+                    it.close()
                     this.midiDeviceInfo = null
                     toastManager.toast("Send: Device open but port closed")
                     return@openDevice
